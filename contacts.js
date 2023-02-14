@@ -16,7 +16,7 @@ async function readContacts(path) {
 
 async function writeContacts(contactsPath, data) {
   try {
-    await fs.writeFile(contactsPath, JSON.stringify(data));
+    await fs.writeFile(contactsPath, JSON.stringify(data,null,2));
     return true;
   } catch (err) {
     console.log(err);
