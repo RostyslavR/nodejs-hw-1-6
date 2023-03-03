@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="avatars"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.22.0/axios.js"></script>
+    <script>
+      const container = document.getElementById("avatars");
+      const baseURL = "http://localhost:3000";
+      const response = axios.get(`${baseURL}/users`);
+      response
+        .then(({ data }) => {
+          console.log(data);
+          const elements = data
+            .map(
+              (item) => `<div>
+                      <h4>${item.email}</h4>
+                      <img src="${baseURL}${item.avatarURL}"/>
+                      </div>`
+            )
+            .join();
+          container.insertAdjacentHTML("beforeend", elements);
+        })
+        .catch((error) => console.log(error.message));
+    </script>
+  </body>
+</html>
+
+<!-- <img src="${baseURL}/${item.avatarURL}" /> -->
+<!-- //www.gravatar.com/avatar/84f74a12f96782f6e37a5e8946a6871e?s=250 -->
+<!-- `<img src="http:\\localhost:3000/public/avatars/63f6b76b7bf2f4a1197ca101.jpg" />` -->
+<!-- `<img src="http:\\www.gravatar.com/avatar/84f74a12f96782f6e37a5e8946a6871e?s=250" />` -->
+<!-- container.insertAdjacentHTML("beforeend", "====="); -->
+<!-- <img src="public/avatars/63f6b76b7bf2f4a1197ca101.jpg" /> -->
+
+<!-- <img src="public/avatars/63f6b76b7bf2f4a1197ca101.jpg"/> -->
+<!-- <img src="http:\\www.gravatar.com/avatar/84f74a12f96782f6e37a5e8946a6871e?s=250"/> -->
+
+<!-- http://localhost:3000/avatars/63f6b76b7bf2f4a1197ca101.jpg -->
